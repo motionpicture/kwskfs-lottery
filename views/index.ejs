@@ -1,0 +1,51 @@
+<div class="form-signin">
+    <form class="mb-4">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">タッチダウンチャレンジ</h1>
+            <p>タッチダウンチャレンジの
+                <br>設定を行ってください</p>
+            <% if (settingFileData.touchDown) { %>
+                <h1 class="h3 mb-3 font-weight-normal">ステータス:
+                    <span class="status">抽選中</span>
+                </h1>
+            <% } else { %>
+                <h1 class="h3 mb-3 font-weight-normal">ステータス:
+                    <span class="status">抽選停止</span>
+                </h1>
+            <% } %>
+        </div>
+
+        <div class="form-label-group">
+            <input type="number" id="count" class="form-control" placeholder="タッチダウンチャレンジ回数" required="" autofocus="">
+            <label for="count">タッチダウンチャレンジ回数</label>
+        </div>
+
+        <!-- <div class="form-label-group">
+        <input type="text" id="extraWinner" class="form-control" placeholder="追加当選者（カンマ（,）区切り）" required="">
+        <label for="extraWinner">追加当選者（カンマ（,）区切り）</label>
+    </div> -->
+
+        <button class="btn btn-lg btn-primary btn-block start" type="submit">抽選開始</button>
+        <button class="btn btn-lg btn-danger btn-block stop" type="button">抽選停止</button>
+    </form>
+
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">当選者一覧（制限<%= GIFT_LENGTH %>）</h1>
+    </div>
+    <ul class="list-group">
+        <% for (winner of winnersFileData.winners) { %>
+            <li class="list-group-item">
+                <p>
+                    <%= winner.winningNumber %>
+                </p>
+                <p style="margin-bottom: 0">
+                    <%= winner.name %>
+                </p>
+            </li>
+        <% } %>
+    </ul>
+    <button class="btn btn-lg btn-primary btn-block update" type="button">更新</button>
+    <button class="btn btn-lg btn-danger btn-block reset" type="button">リセット</button>
+</div>
+
+<script src="/js/index.js"></script>
