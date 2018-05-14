@@ -193,7 +193,7 @@ function judgment(req, res, _next) {
                 return;
             }
             // 当選番号生成
-            const winningNumberLength = 8;
+            const winningNumberLength = 4;
             const winningNumberStr = "0123456789";
             let winningNumber = '';
             for (var i = 0; i < winningNumberLength; i++) {
