@@ -20,9 +20,7 @@ function startProcess(event) {
         url: '/api/start',
         type: 'POST',
         dataType: 'json',
-        data: {
-            'count': $('#count').val()
-        }
+        data: {}
     };
     var done = function (data, textStatus, jqXHR) {
         console.log(data, textStatus, jqXHR);
