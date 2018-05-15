@@ -6,6 +6,7 @@ import * as debug from 'debug';
 import { Response, Request, NextFunction } from 'express';
 import * as httpStatus from 'http-status';
 import * as fs from 'fs-extra';
+import * as moment from 'moment';
 import { errorProsess } from '../base/base.controller';
 
 const log = debug('lottery:render');
@@ -186,7 +187,9 @@ export async function judgment(req: Request, res: Response, _next: NextFunction)
             winnersFileData.winners.push({
                 name: req.body.name,
                 email: req.body.email,
-                winningNumber: winningNumber
+                winningNumber: winningNumber,
+                date: moment().toISOString(),
+                formatDate: moment().format('YYYY/MM/DD HH:mm:ss')
             });
             await fs.writeJson(winnersFilePath, winnersFileData);
             res.status(httpStatus.OK);

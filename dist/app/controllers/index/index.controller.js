@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const debug = require("debug");
 const httpStatus = require("http-status");
 const fs = require("fs-extra");
+const moment = require("moment");
 const base_controller_1 = require("../base/base.controller");
 const log = debug('lottery:render');
 const path = `${__dirname}/../../../../data`;
@@ -209,7 +210,9 @@ function judgment(req, res, _next) {
                 winnersFileData.winners.push({
                     name: req.body.name,
                     email: req.body.email,
-                    winningNumber: winningNumber
+                    winningNumber: winningNumber,
+                    date: moment().toISOString(),
+                    formatDate: moment().format('YYYY/MM/DD HH:mm:ss')
                 });
                 yield fs.writeJson(winnersFilePath, winnersFileData);
                 res.status(httpStatus.OK);
